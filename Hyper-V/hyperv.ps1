@@ -28,12 +28,8 @@ if ($1 -eq "discovery") {
 # Ключи: 
 else {
    try {
-      # Ключ name – получение имён виртуалки
-      if ($2 -eq "name") {
-         $obj = get-vm | Where-Object vmid -eq $1 | ForEach-Object VMName
-      }
       # Ключ status – получение статуса виртуалки
-      elseif ($2 -eq "state") {
+      if ($2 -eq "state") {
          $obj = get-vm | Where-Object vmid -eq $1 | ForEach-Object State
       }
       # Ключ memassigned – получение памяти, выделенной виртуалке
