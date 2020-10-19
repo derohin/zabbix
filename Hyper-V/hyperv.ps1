@@ -11,7 +11,9 @@ if ($1 -eq "discovery") {
       $n = 0
       foreach ($item in $items) {
          $n = $n + 1
-         $line = "{`"{#VMID}`":`"" + ($item) + "`"}"
+         $line = "{`"{#VMID}`":`"" + ($item) + "`""
+         If ($n -le $items.count) {$line = $line + ","}
+         $line = $line + "`"{#VMNAME}`":`"" + (get-vm | Where-Object vmid -eq $item | ForEach-Object VMName) + "`"}"
          If ($n -lt $items.count) {$line = $line + ","}
          $tempstr = $tempstr + $line
       }
