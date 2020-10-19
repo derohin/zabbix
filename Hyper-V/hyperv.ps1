@@ -1,4 +1,5 @@
 ﻿param($1,$2)
+$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 # Автообнарежение задач
 # Ключ: discovery
@@ -8,10 +9,10 @@ if ($1 -eq "discovery") {
       $tempstr = "{"
       $tempstr = $tempstr + "`"data`":["
       $n = 0
-      foreach ($obj in $items) {
-         $n =$n + 1
-         If ($n -gt 1) {write-host -NoNewLine ","}
-         $line = "{`"{#VMID}`":`"" + ($obj) + "`"}"
+      foreach ($item in $items) {
+         $n = $n + 1
+         $line = "{`"{#VMID}`":`"" + ($item) + "`"}"
+         If ($n -lt $items.count) {$line = $line + ","}
          $tempstr = $tempstr + $line
       }
       $tempstr = $tempstr + "]"
