@@ -1,7 +1,7 @@
 ﻿param($1,$2)
 $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
-# Автообнарежение задач
+# Автообнарежение виртуалок
 # Ключ: discovery
 if ($1 -eq "discovery") {
    try {
@@ -24,11 +24,11 @@ if ($1 -eq "discovery") {
    catch {write-host $error;exit}
 }
 
-# Получение информации о задачах
+# Получение информации о виртуалках
 # Ключи: 
 else {
    try {
-      # Ключ status – получение статуса виртуалки
+      # Ключ state – получение статуса виртуалки
       if ($2 -eq "state") {
          $obj = get-vm | Where-Object vmid -eq $1 | ForEach-Object State
       }
